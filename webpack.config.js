@@ -59,7 +59,7 @@ var webpackConfig = {
       to: 'fonts/'
     }, {
       from: 'libs/',
-      to: 'js/'
+      to: 'libs/'
     }, {
       from: 'css/',
       to: 'css/'
