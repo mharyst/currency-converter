@@ -1,47 +1,73 @@
 import styles from '../scss/style.scss';
 
-$('#getData').click(doMagic);
-$('#getDataBatman').click(doMagicBatman);
+let CHF = [], EUR = [], USD = [];
 
-function doMagic() {
-  $.ajax({
-    url: 'https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=EUR&date=19990101&json',
-    type:'GET',
-    crossDomain: true,
-    dataType: 'jsonp',
-    headers: {"X-My-Custom-Header": "some value"},
-    success: function(response) {
-      console.log('Load was performed.');
-      console.log(response);
-    },
-    error: function(response) {
-      console.log('Load error.');
-      console.log(response);
-    },
+function getCurrency() {
+  fetch('./json/currency.json')  
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log(`Looks like there was a problem. Status Code:  
+          ${response.status}`);
+      }
+      response.json().then(
+        function(data) {
+          console.log(data); 
+          createArr(data);
+      });  
+    }  
+  )
+  .catch(function(err) {  
+    console.log('Fetch Error :-S', err);  
   });
+}
 
- 
-  function mycallback(data) {
-    console.log('data');
-    console.log(data);
+getCurrency();
+
+function createArr (data) {
+  for (var date in data) {
+    CHF.push(data[date]['CHF']);
+    EUR.push(data[date]['EUR']);
+    USD.push(data[date]['USD']);
   }
+
+  // console.log(CHF)
+  // console.log(EUR)
+  // console.log(USD)
+
+
+  let ratesCHF = CHF.map(function(date) {
+    return date.rate;
+  });
+  
+  let ratesUSD = USD.map(function(date) {
+    return date.rate;
+  });
+
+  let ratesEUR = EUR.map(function(date) {
+    return date.rate;
+  });
+
+  const minRateCHF = Math.min(...ratesCHF);
+  const maxRateCHF = Math.max(...ratesCHF);
+
+  const minRateEUR = Math.min(...ratesEUR);
+  const maxRateEUR = Math.max(...ratesEUR);
+
+  const minRateUSD = Math.min(...ratesUSD);
+  const maxRateUSD = Math.max(...ratesUSD);
+
+  console.info('CHF:')
+  console.log(minRateCHF);
+  console.log(maxRateCHF);
+  
+  console.info('EUR:')
+  console.log(minRateEUR);
+  console.log(maxRateEUR);
+
+  console.info('USD:')
+  console.log(minRateUSD);
+  console.log(maxRateUSD);
 }
 
-function doMagicBatman() {
-   $.ajax({
-    url: 'https://www.omdbapi.com/?i=tt0944947&Season2&plot=full&r=json&apikey=c2087786',
-    crossDomain: true,
-    type:"GET",
-    contentType: "application/json",
-    async: false,
-    dataType: "jsonp",  
-    success: function(response){
-      console.log('Load was performed.');
-      console.log(response);
-    },
-    error: function(response){
-      console.log('Load error.');
-      console.log(response);
-    },
-  });
-}
+
