@@ -18,19 +18,18 @@ Live version available at https://mharyst.github.io/currency-converter/
 * Install dependencies:
 
 ```
-
 npm i
 ```
 
 * Start project:
-```
 
+```
 npm start
 ```
 
 * Open in browser:
-```
 
+```
 localhost:8080
 ```
 
@@ -39,22 +38,22 @@ localhost:8080
 ## How to parse data from bank.gov.ua:
 
 * Run parse script and wait until it ends:
-```
 
+```
 cd server
 mkdir json
 node node.js
 ```
 
 * Filter results:
-```
 
+```
 node filter.js
 ```
 
 * Concat results to one file `currency.json`:
-```
 
+```
 touch currency.json
 node combineAll.js
 ```

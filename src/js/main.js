@@ -2,6 +2,7 @@ import styles from '../scss/style.scss';
 
 let CHF = [], EUR = [], USD = [];
 
+/* Get data */
 function getCurrency() {
   fetch('./json/currency.json')  
   .then(
@@ -23,7 +24,7 @@ function getCurrency() {
 
 getCurrency();
 
-/*creating arrays with currencies*/
+/* Сreating arrays with currencies */
 function callback (data) {
   data.map((arr) => {
     if (arr[0]) {
@@ -55,7 +56,7 @@ function callback (data) {
     }
   })
 
-  /*creating arrays only with rates*/
+  /* Creating arrays only with rates */
   let ratesCHF = CHF.map((date) => {
     return date.rate;
   });
@@ -68,7 +69,7 @@ function callback (data) {
     return date.rate;
   });
 
-  /*calc min/max for currencies*/
+  /* Calc min/max for currencies */
   const minRateCHF = Math.min(...ratesCHF);
   const maxRateCHF = Math.max(...ratesCHF);
 
@@ -78,14 +79,14 @@ function callback (data) {
   const minRateUSD = Math.min(...ratesUSD);
   const maxRateUSD = Math.max(...ratesUSD);
 
-  /*calc average*/
+  /* Calc average */
   let average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
 
   let avUSD = average( [...ratesUSD] );
   let avEUR = average( [...ratesEUR] );
   let avCHF = average( [...ratesCHF] );
 
-  /*find date*/
+  /* Find date */
   let findDayRate = (arr, rate) => {
     let result = []
     for (let i = 0; i < arr.length - 1; i++) {
@@ -119,7 +120,6 @@ function callback (data) {
     datesAvCHF = findDaysWithinAv5(CHF, avCHF);
 
   /* Calc correlation from 1999-01-01 until today */
-  /* Between USD/EUR */
 
   let calcCorrelation = (arr1, arr2, averageVal1, averageVal2) => {
     let a = 0, b = 0, c = 0;
@@ -135,6 +135,7 @@ function callback (data) {
     return correletion;
   }
 
+  /* Between USD/EUR */
   let corrUsdEur = (calcCorrelation(USD, EUR, avUSD, avEUR)).toFixed(6);
 
   /* Between CHF/EUR */
@@ -147,7 +148,7 @@ function callback (data) {
   ***
   **/
 
-  /*min/max*/
+  /* min/max */
   document.querySelector('#min-chf').innerHTML = minRateCHF.toFixed(2);
   document.querySelector('#max-chf').innerHTML = maxRateCHF.toFixed(2);
 
@@ -162,7 +163,7 @@ function callback (data) {
   document.querySelector('#average-eur').innerHTML = avEUR.toFixed(2);
   document.querySelector('#average-chf').innerHTML = avCHF.toFixed(2);
 
-  /*When dates occur*/
+  /* When dates occur */
   function showDates(arrDates, currency, value) {
     if (arrDates.length > 1) {
       let selectedField = document.querySelector(`#${value}-date-${currency}`);
