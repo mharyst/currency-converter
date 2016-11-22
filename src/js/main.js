@@ -12,7 +12,7 @@ function getCurrency() {
       }
       response.json().then(
         function(data) {
-          createArr(data);
+          callback(data);
       });  
     }  
   )
@@ -24,7 +24,7 @@ function getCurrency() {
 getCurrency();
 
 /*creating arrays with currencies*/
-function createArr (data) {
+function callback (data) {
   data.map((arr) => {
     if (arr[0]) {
       if (arr[0]['CHF']) {
@@ -122,23 +122,23 @@ function createArr (data) {
   /* Between USD/EUR */
 
   let calcCorrelation = (arr1, arr2, averageVal1, averageVal2) => {
-    let correletion;
-    let sum1 = 0, sum2 = 0, sum3 = 0;
+    let a = 0, b = 0, c = 0;
     let arrLength = arr1.length > arr2.length ? arr2.length - 1 : arr1.length - 1;
     for (let i = 0; i < arrLength; i++) {
-      let a = arr1[i]['rate'] - averageVal1;
-      let b = arr2[i]['rate'] - averageVal2;
-      sum1 += a * b;
-      sum2 += Math.pow(a, 2);
-      sum3 += Math.pow(b, 2);
+      let rate1 = arr1[i]['rate'] - averageVal1;
+      let rate2 = arr2[i]['rate'] - averageVal2;
+      a += rate1 * rate2;
+      b += Math.pow(rate1, 2);
+      c += Math.pow(rate2, 2);
     }
-    return sum1 / Math.sqrt(sum2 * sum3);
+    let correletion = a / Math.sqrt(b * c);
+    return correletion;
   }
 
-  let corrUsdEur = (calcCorrelation(USD, EUR, avUSD, avEUR)).toFixed(4);
+  let corrUsdEur = (calcCorrelation(USD, EUR, avUSD, avEUR)).toFixed(6);
 
   /* Between CHF/EUR */
-  let corrChfEur = (calcCorrelation(CHF, EUR, avCHF, avEUR)).toFixed(4);
+  let corrChfEur = (calcCorrelation(CHF, EUR, avCHF, avEUR)).toFixed(6);
 
 
   /**
