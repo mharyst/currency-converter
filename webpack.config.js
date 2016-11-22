@@ -27,9 +27,6 @@ var webpackConfig = {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract('style', 'css!autoprefixer!sass?sourceMap')
     }, {
-      test: /\.php$/,
-      loader: 'php-loader'
-    }, {
       test  : /\.(png|jpg|svg|ttf|ico|eot|woff|woff2)$/,
       loader: 'url?name=[name].[ext]?[hash]&limit=4096'
     }, {

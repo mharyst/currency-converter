@@ -10,10 +10,80 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
 <link href="./css/style.css" rel="stylesheet"></head>
 <body>
-  <h1>Currency converter!</h1>
-  <button type="button" name="button" id="getData">Do magic!</button>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Currency converter v1.0.0</h1>
+    <p class="lead">The data are relevant for 22.11.2016.</p>
+  </div>
+</div>
+<div class="container">
+  <table class="table table-hover table-striped ">
+    <thead>
+      <tr>
+        <th></th>
+        <th>USD</th>
+        <th>EUR</th>
+        <th>CHF</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Min exchange rates</th>
+        <td id="min-usd"></td>
+        <td id="min-eur"></td>
+        <td id="min-chf"></td>
+      </tr>
+      <tr>
+        <th scope="row">Max exchange rates</th>
+        <td id="max-usd"></td>
+        <td id="max-eur"></td>
+        <td id="max-chf"></td>
+      </tr>
+      <tr>
+        <th scope="row">Average</th>
+        <td id="average-usd"></td>
+        <td id="average-eur"></td>
+        <td id="average-chf"></td>
+      </tr>
+      <tr>
+        <th scope="row">Dates when these rates occur (max)</th>
+        <td id="max-date-USD"></td>
+        <td id="max-date-EUR"></td>
+        <td id="max-date-CHF"></td>
+      </tr>
+      <tr>
+        <th scope="row">Dates when these rates occur (min)</th>
+        <td id="min-date-USD"></td>
+        <td id="min-date-EUR"></td>
+        <td id="min-date-CHF"></td>
+      </tr>
+      <tr>
+        <th scope="row">Dates dates when exchange rate was within 5%</th>
+        <td id="dates-av-USD"></td>
+        <td id="dates-av-EUR"></td>
+        <td id="dates-av-CHF"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>USD/EUR</th>
+        <th>CHF/EUR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Correlation</th>
+        <td id="corr-usd-eur"></td>
+        <td id="corr-chf-eur"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-  <script src="libs/jquery-3.1.0.min.js" type="text/javascript"></script>
-  <!-- <script src="js/main.js" type="text/javascript"></script> -->
 <script type="text/javascript" src="./js/main.js"></script></body>
 </html>

@@ -1,13 +1,1 @@
-@import "_reset";
-
-html {
-  font-size: 16px;
-}
-
-body {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+@import "vendor/_bootstrap.css";
