@@ -36,15 +36,15 @@ function createArr (data) {
   // console.log(USD)
 
 
-  let ratesCHF = CHF.map(function(date) {
+  let ratesCHF = CHF.map((date) => {
     return date.rate;
   });
   
-  let ratesUSD = USD.map(function(date) {
+  let ratesUSD = USD.map((date) => {
     return date.rate;
   });
 
-  let ratesEUR = EUR.map(function(date) {
+  let ratesEUR = EUR.map((date) => {
     return date.rate;
   });
 
@@ -68,6 +68,21 @@ function createArr (data) {
   console.info('USD:')
   console.log(minRateUSD);
   console.log(maxRateUSD);
+
+  let average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+
+  let avUSD = average( [...ratesUSD] );
+  let avEUR = average( [...ratesEUR] );
+  let avCHF = average( [...ratesCHF] );
+
+  console.info('Average USD:')
+  console.log(avUSD);
+
+  console.info('Average EUR:')
+  console.log(avEUR);
+
+  console.info('Average CHF:')
+  console.log(avCHF);
 }
 
 
