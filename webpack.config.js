@@ -64,6 +64,9 @@ var webpackConfig = {
       from: 'libs/',
       to: 'libs/'
     }, {
+      from: 'json/',
+      to: 'json/'
+    }, {
       from: 'css/',
       to: 'css/'
     }]),

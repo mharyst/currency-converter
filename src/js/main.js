@@ -12,7 +12,7 @@ function getCurrency() {
       }
       response.json().then(
         function(data) {
-          console.log(data); 
+          // console.log(data); 
           createArr(data);
       });  
     }  
@@ -25,16 +25,36 @@ function getCurrency() {
 getCurrency();
 
 function createArr (data) {
-  for (var date in data) {
-    CHF.push(data[date]['CHF']);
-    EUR.push(data[date]['EUR']);
-    USD.push(data[date]['USD']);
-  }
-
-  // console.log(CHF)
-  // console.log(EUR)
-  // console.log(USD)
-
+  data.map((arr) => {
+    if (arr[0]) {
+      if (arr[0]['CHF']) {
+        CHF.push(arr[0]['CHF'])
+      } else if (arr[0]['USD']) {
+        USD.push(arr[0]['USD'])
+      } else if (arr[0]['EUR']) {
+        EUR.push(arr[0]['EUR'])
+      }
+    }
+    if (arr[1]) {
+      if (arr[1]['CHF']) {
+        CHF.push(arr[1]['CHF'])
+      } else if (arr[1]['USD']) {
+        USD.push(arr[1]['USD'])
+      } else if (arr[1]['EUR']) {
+        EUR.push(arr[1]['EUR'])
+      }
+    }
+    if (arr[2]) {
+      if (arr[2]['CHF']) {
+        CHF.push(arr[2]['CHF'])
+      } else if (arr[2]['USD']) {
+        USD.push(arr[2]['USD'])
+      } else if (arr[2]['EUR']) {
+        EUR.push(arr[2]['EUR'])
+      }
+    }
+  })
+  // console.log(EUR); 
 
   let ratesCHF = CHF.map((date) => {
     return date.rate;
