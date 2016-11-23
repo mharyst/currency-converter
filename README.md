@@ -23,9 +23,17 @@ npm i
 
 * Start project:
 
-```
-npm start
-```
+  * OS Windows:
+
+  ```
+  npm start
+  ```
+
+  * On macOS or Linux use this command:
+
+  ```
+  npm run app-start
+  ```
 
 * Open in browser:
 
